@@ -57,5 +57,18 @@ document.getElementById("navbar__list").addEventListener("click", (event) => {
         let desiredSection = document.querySelector(query);
         desiredSection.scrollIntoView({behavior: "smooth"});
     }
-}) 
+});
+
+document.querySelector(".hamburger__icon").addEventListener("click", () => {
+    let icon = document.querySelector(".hamburger__icon");
+    let menu = document.getElementById("navbar__list");
+
+    if(icon.src.includes("menu1")){
+        icon.setAttribute("src", "../images/menu2.png");
+        menu.classList.remove("navbar__list--hamburger");
+    } else {
+        icon.setAttribute("src", "../images/menu1.png");
+        menu.classList.add("navbar__list--hamburger");
+    }
+});
 
