@@ -69,11 +69,11 @@ document.querySelector(".hamburger__icon").addEventListener("click", () => {
     // check the menu curent state (open or closed) using the image source 
     if (icon.src.includes("menu1")) {
         // open the menu
-        icon.src = "../images/menu2.png";
+        icon.src = "images/menu2.png";
         menu.classList.remove("navbar__list--hamburger");
     } else {
         // close the menu
-        icon.src = "../images/menu1.png";
+        icon.src = "images/menu1.png";
         menu.classList.add("navbar__list--hamburger");
     }
 });
