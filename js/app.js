@@ -14,10 +14,10 @@ for (const section of sections) {
     linkElement.classList.add("menu__link");
 
     // set the first section to active by default
-    if(section.id[7] == "1"){
+    if (section.id[7] == "1") {
         linkElement.classList.add("menu__link--active");
     }
-    linkElement.href = "#"+section.id;
+    linkElement.href = `#${section.id}`;
 
     // add the elements to thier parents
     listItemElement.appendChild(linkElement)
@@ -26,12 +26,14 @@ for (const section of sections) {
 // add the list items to the unordered list to create the nav menu
 document.getElementById("navbar__list").appendChild(documentFragment);
 
+// EVENTS
+
 // add scroll event to change the active section and menu item
 document.addEventListener("scroll", (event) => {
     // loop over the sections
     for (const section of sections) {
         // check if the sction satisfy the location criteria 
-        if(section.getBoundingClientRect().y <= 480 && section.getBoundingClientRect().y > -130){
+        if (section.getBoundingClientRect().y <= 480 && section.getBoundingClientRect().y > -130) {
             // add the active class to the curent section and remove it from the previously active section
             document.querySelector(".active-section").classList.remove("active-section");
             section.classList.add("active-section");
@@ -48,27 +50,30 @@ document.addEventListener("scroll", (event) => {
 // add a click event for the menu item to scroll to the relevent section
 document.getElementById("navbar__list").addEventListener("click", (event) => {
     // check if the event target is an anchor element
-    if(event.target.nodeName.toLowerCase() === "a"){
+    if (event.target.nodeName.toLowerCase() === "a") {
         // prevent the event default behaviour
         event.preventDefault();
 
         // get the section related to the clicked anchor and scroll to it
         let query = `section[data-nav = '${event.target.textContent}']`;
         let desiredSection = document.querySelector(query);
-        desiredSection.scrollIntoView({behavior: "smooth"});
+        desiredSection.scrollIntoView({ behavior: "smooth" });
     }
 });
 
+// add a click event for the hamburger menu icon to show and hide the menu in small screens
 document.querySelector(".hamburger__icon").addEventListener("click", () => {
     let icon = document.querySelector(".hamburger__icon");
     let menu = document.getElementById("navbar__list");
 
-    if(icon.src.includes("menu1")){
-        icon.setAttribute("src", "../images/menu2.png");
+    // check the menu curent state (open or closed) using the image source 
+    if (icon.src.includes("menu1")) {
+        // open the menu
+        icon.src = "../images/menu2.png";
         menu.classList.remove("navbar__list--hamburger");
     } else {
-        icon.setAttribute("src", "../images/menu1.png");
+        // close the menu
+        icon.src = "../images/menu1.png";
         menu.classList.add("navbar__list--hamburger");
     }
 });
-
